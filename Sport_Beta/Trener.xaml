@@ -1,0 +1,140 @@
+﻿<Window x:Class="Sport.Trener"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sport"
+      mc:Ignorable="d" 
+      Title="Trener" Height="500" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+
+    <Grid Background="#FFF3E0E0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="450"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Image Source="/Photo/Back.png" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,5,0,0" Height="35" Cursor="Hand" MouseDown="Image_MouseDown"/>
+            <Label Content="Тренеры" FontSize="25" HorizontalAlignment="Center" />
+            <Polygon Fill="Black" Points="0,50,800,50" StrokeThickness="1" Stroke="Black"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Cursor="Hand" x:Name="perv">
+            <TextBlock Margin="10,10,384,23" x:Name="trainersTextBlock" FontSize="21" />
+            <TextBlock Margin="560,10,39,23" x:Name="trainersTextBlock_Spezialist" FontSize="21" />
+            <Label Margin="13,0,400,410" Background="Transparent" BorderBrush="Transparent" MouseDown="proba" />
+            <Label Margin="13,30,400,380" Background="Transparent" BorderBrush="Transparent" MouseDown="proba2" />
+            <Label Margin="13,60,400,350" Background="Transparent" BorderBrush="Transparent" MouseDown="proba3" />
+            <Label Margin="13,90,400,320" Background="Transparent" BorderBrush="Transparent" MouseDown="proba4" />
+            <Label Margin="13,120,400,290" Background="Transparent" BorderBrush="Transparent" MouseDown="proba5" />
+            <Label Margin="13,150,400,260" Background="Transparent" BorderBrush="Transparent" MouseDown="proba6" />
+            <Label Margin="13,180,400,230" Background="Transparent" BorderBrush="Transparent" MouseDown="proba7" />
+            <Label Margin="13,210,400,200" Background="Transparent" BorderBrush="Transparent" MouseDown="proba8" />
+            <Label Margin="13,240,400,170" Background="Transparent" BorderBrush="Transparent" MouseDown="proba9" />
+            <Label Margin="13,270,400,140" Background="Transparent" BorderBrush="Transparent" MouseDown="proba10" />
+
+
+        </Grid>
+
+        <Grid x:Name="p1" Visibility="Hidden" Background="White" Grid.RowSpan="2">
+            <Image Source="/Photo/Back.png" Width="35" Height="30" VerticalAlignment="Top" Margin="24,23,0,0" HorizontalAlignment="Left" MouseDown="Zad_Trener_Click" />
+            <TextBlock x:Name="t1_Name_TextBlock"  Width="300" Height="50" FontSize="25" HorizontalAlignment="Right" Margin="0,40,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="s1" Width="300" Height="50" FontSize="15" HorizontalAlignment="Right" Margin="0,90,22,0" VerticalAlignment="Top" Foreground="Gray" />
+            <Label x:Name="e1" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,130,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="st1" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,175,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="h1" Width="623" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="70,290,0,0" FontSize="20"/>
+            <Label x:Name="photo1" Width="300" Height="230" VerticalAlignment="Top" Margin="80,35,0,0" HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Grid x:Name="p2" Visibility="Hidden" Background="White" Grid.RowSpan="2">
+            <Image Source="/Photo/Back.png" Width="30" Height="30" Margin="10,10,740,440" MouseDown="Zad_Trener_Click" />
+            <TextBlock x:Name="t2_Name_TextBlock"  Width="300" Height="50" FontSize="25" HorizontalAlignment="Right" Margin="0,40,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="s2" Width="300" Height="50" FontSize="15" HorizontalAlignment="Right" Margin="0,90,22,0" VerticalAlignment="Top" Foreground="Gray" />
+            <Label x:Name="e2" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,130,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="st2" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,175,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="h2" Width="629" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="70,290,0,0" FontSize="20"/>
+            <Label x:Name="photo2" Width="300" Height="230" VerticalAlignment="Top" Margin="80,35,0,0" HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Grid x:Name="p3" Visibility="Hidden" Background="White" Grid.RowSpan="2">
+            <Image Source="/Photo/Back.png" Width="30" Height="30" Margin="10,10,740,440" MouseDown="Zad_Trener_Click" />
+            <TextBlock x:Name="t3_Name_TextBlock"  Width="300" Height="50" FontSize="25" HorizontalAlignment="Right" Margin="0,40,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="s3" Width="300" Height="50" FontSize="15" HorizontalAlignment="Right" Margin="0,90,22,0" VerticalAlignment="Top" Foreground="Gray" />
+            <Label x:Name="e3" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,130,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="st3" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,175,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="h3" Width="629" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="70,290,0,0" FontSize="20"/>
+            <Label x:Name="photo3" Width="300" Height="230" VerticalAlignment="Top" Margin="80,35,0,0" HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Grid x:Name="p4" Visibility="Hidden" Background="White" Grid.RowSpan="2">
+            <Image Source="/Photo/Back.png" Width="30" Height="30" Margin="10,10,740,440" MouseDown="Zad_Trener_Click" />
+            <TextBlock x:Name="t4_Name_TextBlock"  Width="300" Height="50" FontSize="25" HorizontalAlignment="Right" Margin="0,40,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="s4" Width="300" Height="50" FontSize="15" HorizontalAlignment="Right" Margin="0,90,22,0" VerticalAlignment="Top" Foreground="Gray" />
+            <Label x:Name="e4" Width="312" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,130,10,0" VerticalAlignment="Top"/>
+            <Label x:Name="st4" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,175,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="h4" Width="629" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="70,290,0,0" FontSize="20"/>
+            <Label x:Name="photo4" Width="300" Height="230" VerticalAlignment="Top" Margin="80,35,0,0" HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Grid x:Name="p5" Visibility="Hidden" Background="White" Grid.RowSpan="2">
+            <Image Source="/Photo/Back.png" Width="30" Height="30" Margin="10,10,740,440" MouseDown="Zad_Trener_Click" />
+            <TextBlock x:Name="t5_Name_TextBlock"  Width="300" Height="50" FontSize="25" HorizontalAlignment="Right" Margin="0,40,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="s5" Width="300" Height="50" FontSize="15" HorizontalAlignment="Right" Margin="0,90,22,0" VerticalAlignment="Top" Foreground="Gray" />
+            <Label x:Name="e5" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,130,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="st5" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,175,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="h5" Width="629" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="70,290,0,0" FontSize="20"/>
+            <Label x:Name="photo5" Width="300" Height="230" VerticalAlignment="Top" Margin="80,35,0,0" HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Grid x:Name="p6" Visibility="Hidden" Background="White" Grid.RowSpan="2">
+            <Image Source="/Photo/Back.png" Width="30" Height="30" Margin="10,10,740,440" MouseDown="Zad_Trener_Click" />
+            <TextBlock x:Name="t6_Name_TextBlock"  Width="300" Height="50" FontSize="25" HorizontalAlignment="Right" Margin="0,40,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="s6" Width="300" Height="50" FontSize="15" HorizontalAlignment="Right" Margin="0,90,22,0" VerticalAlignment="Top" Foreground="Gray" />
+            <Label x:Name="e6" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,130,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="st6" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,175,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="h6" Width="629" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="70,290,0,0" FontSize="20"/>
+            <Label x:Name="photo6" Width="300" Height="230" VerticalAlignment="Top" Margin="80,35,0,0" HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Grid x:Name="p7" Visibility="Hidden" Background="White" Grid.RowSpan="2">
+            <Image Source="/Photo/Back.png" Width="30" Height="30" Margin="10,10,740,440" MouseDown="Zad_Trener_Click" />
+            <TextBlock x:Name="t7_Name_TextBlock"  Width="300" Height="50" FontSize="25" HorizontalAlignment="Right" Margin="0,40,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="s7" Width="300" Height="50" FontSize="15" HorizontalAlignment="Right" Margin="0,90,22,0" VerticalAlignment="Top" Foreground="Gray" />
+            <Label x:Name="e7" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,130,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="st7" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,175,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="h7" Width="629" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="70,290,0,0" FontSize="20"/>
+            <Label x:Name="photo7" Width="300" Height="230" VerticalAlignment="Top" Margin="80,35,0,0" HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Grid x:Name="p8" Visibility="Hidden" Background="White" Grid.RowSpan="2">
+            <Image Source="/Photo/Back.png" Width="30" Height="30" Margin="10,10,740,440" MouseDown="Zad_Trener_Click" />
+            <TextBlock x:Name="t8_Name_TextBlock"  Width="300" Height="50" FontSize="25" HorizontalAlignment="Right" Margin="0,40,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="s8" Width="300" Height="50" FontSize="15" HorizontalAlignment="Right" Margin="0,90,22,0" VerticalAlignment="Top" Foreground="Gray" />
+            <Label x:Name="e8" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,130,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="st8" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,175,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="h8" Width="629" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="70,290,0,0" FontSize="20"/>
+            <Label x:Name="photo8" Width="300" Height="230" VerticalAlignment="Top" Margin="80,35,0,0" HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Grid x:Name="p9" Visibility="Hidden" Background="White" Grid.RowSpan="2">
+            <Image Source="/Photo/Back.png" Width="30" Height="30" Margin="10,10,740,440" MouseDown="Zad_Trener_Click" />
+            <TextBlock x:Name="t9_Name_TextBlock"  Width="300" Height="50" FontSize="25" HorizontalAlignment="Right" Margin="0,40,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="s9" Width="300" Height="50" FontSize="15" HorizontalAlignment="Right" Margin="0,90,22,0" VerticalAlignment="Top" Foreground="Gray" />
+            <Label x:Name="e9" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,130,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="st9" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,175,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="h9" Width="629" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="70,290,0,0" FontSize="20"/>
+            <Label x:Name="photo9" Width="300" Height="230" VerticalAlignment="Top" Margin="80,35,0,0" HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Grid x:Name="p10" Visibility="Hidden" Background="White" Grid.RowSpan="2">
+            <Image Source="/Photo/Back.png" Width="30" Height="30" Margin="10,10,740,440" MouseDown="Zad_Trener_Click" />
+            <TextBlock x:Name="t10_Name_TextBlock"  Width="300" Height="50" FontSize="25" HorizontalAlignment="Right" Margin="0,40,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="s10" Width="300" Height="50" FontSize="15" HorizontalAlignment="Right" Margin="0,90,22,0" VerticalAlignment="Top" Foreground="Gray" />
+            <Label x:Name="e10" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,130,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="st10" Width="300" Height="50" FontSize="21" HorizontalAlignment="Right" Margin="0,175,22,0" VerticalAlignment="Top"/>
+            <Label x:Name="h10" Width="629" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="70,290,0,0" FontSize="20"/>
+            <Label x:Name="photo10" Width="300" Height="230" VerticalAlignment="Top" Margin="80,35,0,0" HorizontalAlignment="Left"/>
+        </Grid>
+
+    </Grid>
+</Window>
