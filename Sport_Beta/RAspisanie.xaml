@@ -29,10 +29,18 @@
             <Polygon Fill="Black" Points="0,50,700,50" StrokeThickness="1" Stroke="Black"/>
         </Grid>
 
-       
+
         <Grid Grid.Row="1" Cursor="Hand" Visibility="Visible" x:Name="lala">
-                            <TextBlock Margin="159,10,225,239" x:Name="name_Rasp_TextBlock" FontSize="21" />
-                            <TextBlock Margin="10,10,578,239" x:Name="time_Rasp_TextBlock" FontSize="21" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="137*"/>
+                <ColumnDefinition Width="213*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="159,10,225,395" x:Name="name_Rasp_TextBlock" FontSize="21" Grid.ColumnSpan="2" MouseLeftButtonDown="Click"  />
+            <TextBlock Margin="10,10,152,395" x:Name="time_Rasp_TextBlock" FontSize="21" MouseLeftButtonDown="Click"/>
+            <TextBlock Margin="159,60,225,351" x:Name="name_Rasp2_TextBlock" FontSize="21" Grid.ColumnSpan="2" MouseLeftButtonDown="Click" />
+            <TextBlock Margin="10,60,152,345" x:Name="time_Rasp2_TextBlock" FontSize="21" MouseLeftButtonDown="Click" />
+            <TextBlock Margin="159,104,225,306" x:Name="name_Rasp3_TextBlock" FontSize="21" Grid.ColumnSpan="2" MouseLeftButtonDown="Click" />
+            <TextBlock Margin="10,105,152,300" x:Name="time_Rasp3_TextBlock" FontSize="21" MouseLeftButtonDown="Click" />
         </Grid>
 
         <Calendar Grid.Row="1" x:Name="calendarControl" Margin="466,29,29,225" Cursor="Hand" PreviewMouseDoubleClick="calendarControl_PreviewMouseLeftButtonDown"   >
@@ -50,6 +58,7 @@
         <!--
         <Button x:Name="AddButton" Content="Добавить запись" Click="AddButton_Click" Margin="197,10,350,390" Grid.Row="1"/>
          -->
+
 
     </Grid>
 </Window>

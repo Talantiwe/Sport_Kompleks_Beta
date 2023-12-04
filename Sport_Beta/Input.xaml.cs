@@ -22,6 +22,7 @@ namespace Sport
 
     public partial class Input : Window
     {
+
         private readonly User user;
         DataBase dataBase = new DataBase();
 
@@ -57,7 +58,8 @@ namespace Sport
                 this.Close();
             }
             else if (user != null)
-            {
+            {   
+
                 MessageBox.Show("Вы вошли успешно как пользователь");
                 MainWindow mainWindow = new MainWindow(user);
                 this.Hide();

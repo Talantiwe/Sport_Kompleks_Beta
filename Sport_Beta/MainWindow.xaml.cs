@@ -85,7 +85,7 @@ namespace Sport
 
         private void Raspisan_Click(object sender, RoutedEventArgs e)
         {
-            RAspisanie rasp = new RAspisanie();
+            RAspisanie rasp = new RAspisanie(user);
             rasp.Show();
         }
 

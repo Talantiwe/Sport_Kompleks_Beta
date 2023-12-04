@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using md5_sql_hash;
+using System.Data.Entity;
 
 namespace Sport
 {
@@ -28,55 +29,55 @@ namespace Sport
             InitializeComponent();
             
         }
-        
+        public class SportsDataContextt : DbContext
+        {
+
+            public DbSet<User> Users { get; set; }
+
+            public SportsDataContextt() : base("Data Source=DESKTOP-JT2CST3;Initial Catalog=SportKompleks2;Integrated Security=True")
+            {
+
+            }
+
+        }
 
 
 
 
 
         private void Reg_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-            DataBase dataBase = new DataBase();
-
-                //Close();
-
-                var login = Login.Text;
-                var pass = md5.GetHash(password.Password);
-                var name = Name.Text;
-
-               
-                
-                string querstring = $"insert into User(login, pass, Имя) values ('{login}', '{pass}','{name}')";
-
-
-                SqlCommand command = new SqlCommand(querstring, dataBase.GetConnection());
-
-                dataBase.OpenConnection();
-
-                  User user = new User
-                  {
-                         //Name1 = name
-
-                   };
-            
-            if (command.ExecuteNonQuery() == 1)
+                using (SportsDataContextt context = new SportsDataContextt())
                 {
-                    MessageBox.Show("Аккаунт зарегестрирован");
 
-                    Input input = new Input(user);
-                    this.Hide(); 
-                    input.ShowDialog();
+                    var login = Login.Text;
+                    var pass = md5.GetHash(password.Password);
+                    var name = Name.Text;
+
+                    var newUser = new User
+                    {
+                        login = login,
+                        pass = pass,
+                        Name = name
+                    };
+                    context.Users.Add(newUser);
+
+                    context.SaveChanges();
+                    MessageBox.Show("Вы успешно зарегестрировались");
+                    Input input = new Input();
+                    input.Show();
+                    this.Close();
                 }
-                else
-                {
-                    MessageBox.Show("Не создан");
-                }
-                dataBase.CloseConnection();
-
-
             }
-           
-            private Boolean Checkuser()
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+            }
+        }
+
+        private Boolean Checkuser()
             {
                 var login = Login.Text;
                 var pass = md5.GetHash(password.Password);

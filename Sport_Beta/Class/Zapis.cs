@@ -18,8 +18,8 @@ namespace Sport
         public int Id_Zapis { get; set; }
         public string Name { get; set; }
         public TimeSpan Time { get; set; }
-        //public DateTime Data { get; set; }
-      //  public int Id_User { get; set; }
+        public DateTime Data { get; set; }
+        public int Id_User { get; set; }
       //  public int Id { get; set; }
     }
 }
