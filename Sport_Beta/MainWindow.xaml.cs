@@ -17,6 +17,8 @@ using System.Diagnostics.Eventing.Reader;
 using System.Windows.Threading;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
+using System.Threading;
+
 
 namespace Sport
 {
@@ -27,6 +29,7 @@ namespace Sport
     public partial class MainWindow : Window
     {
         private readonly User user;
+        DataBase dataBase = new DataBase();
 
 
         /*
@@ -39,28 +42,26 @@ namespace Sport
 
 
 
-        DataBase dataBase = new DataBase();
-        private DispatcherTimer inactivityTimer;
-        private const int InactivityTimeoutInSeconds = 5; // 30 seconds
+
+        private DispatcherTimer exitTimer;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // Инициализация таймера
-            inactivityTimer = new DispatcherTimer();
-            inactivityTimer.Interval = TimeSpan.FromSeconds(InactivityTimeoutInSeconds);
-            inactivityTimer.Tick += InactivityTimer_Tick;
+            // Инициализация и запуск таймера для автоматического закрытия окна через 10 секунд
+            exitTimer = new DispatcherTimer();
+            exitTimer.Interval = TimeSpan.FromSeconds(10);
+            exitTimer.Tick += AutoCloseWindow;
+            exitTimer.Start();
+        }
 
-            // Запуск таймера при загрузке формы
-            Loaded += MainWindow_Loaded;
+        private void AutoCloseWindow(object sender, EventArgs e)
+        {
+            Console.WriteLine("Автоматическое закрытие окна.");
 
-            // Добавление обработчиков событий мыши и клавиатуры
-            MouseMove += MainWindow_MouseMove;
-            PreviewKeyDown += MainWindow_PreviewKeyDown;
-
-            // Начать следить за бездействием
-            StartInactivityTimer();
+            // Закрытие текущего окна
+            this.Close();
         }
 
         private void Exit_Click(object sender, MouseButtonEventArgs e)
@@ -126,53 +127,6 @@ namespace Sport
             //NameTextBlock.Text = "Имя: " + user.Name1;
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Запуск таймера при загрузке формы
-            StartInactivityTimer();
-        }
-
-        private void StartInactivityTimer()
-        {
-            inactivityTimer.Start();
-        }
-
-        private void ResetInactivityTimer()
-        {
-            inactivityTimer.Stop();
-            inactivityTimer.Start();
-        }
-
-        private void InactivityTimer_Tick(object sender, EventArgs e)
-        {
-            // Событие срабатывает после бездействия пользователя в течение указанного времени
-
-            // Здесь добавлен код для выхода из всего приложения
-            Application.Current.Shutdown();
-            Environment.Exit(0);
-        }
-
-        // Обработчик события для сброса таймера при любой активности пользователя (например, при нажатии кнопок)
-        private void OnUserActivity()
-        {
-            ResetInactivityTimer();
-        }
-
-        private void MainWindow_MouseMove(object sender, MouseEventArgs e)
-        {
-            // Обработчик события MouseMove вызывается при каждом движении мыши.
-            // Сбросить таймер после каждого движения мыши
-            OnUserActivity();
-        }
-
-        private void MainWindow_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            // Обработчик события PreviewKeyDown вызывается перед обработкой клавиш.
-            // Сбросить таймер после каждого нажатия клавиши
-            OnUserActivity();
-        }
+        
     }
 }
-
-
-
