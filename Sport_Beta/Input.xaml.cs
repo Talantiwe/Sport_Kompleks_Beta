@@ -1,30 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
 using md5_sql_hash;
-
-
 
 namespace Sport
 {
-
     public partial class Input : Window
     {
-
         private readonly User user;
-        DataBase dataBase = new DataBase();
+        private readonly DataBase dataBase = new DataBase();
+        private int numberAttempts = 0;
 
         public Input()
         {
@@ -37,18 +26,27 @@ namespace Sport
             this.user = user;
         }
 
-
-
-
-        private void Inputt_Click(object sender, RoutedEventArgs e)
+        private async Task Blocking()
         {
+            numberAttempts++;
+            if (numberAttempts == 3)
+            {
+                MessageBox.Show("Система заблокирована на 10 секунд.");
+                Inputt.IsEnabled = false;
+                Reg.IsEnabled = false;
+                await Task.Delay(10000);
+                Inputt.IsEnabled = true;
+                Reg.IsEnabled = true;
+                numberAttempts = 0;
+            }
+        }
 
-            
-
+        private async void Inputt_Click(object sender, RoutedEventArgs e)
+        {
             string login = Login.Text;
             string pass = md5.GetHash(password.Password);
 
-            User user = AuthenticateUser(login, pass);
+            User authenticatedUser = AuthenticateUser(login, pass);
 
             if (login == "ad" && pass == "Ujr1N5RrecT4Np7Tm6eGBQ==")
             {
@@ -57,11 +55,10 @@ namespace Sport
                 admin.Show();
                 this.Close();
             }
-            else if (user != null)
-            {   
-
+            else if (authenticatedUser != null)
+            {
                 MessageBox.Show("Вы вошли успешно как пользователь");
-                MainWindow mainWindow = new MainWindow(user);
+                MainWindow mainWindow = new MainWindow(authenticatedUser);
                 this.Hide();
                 mainWindow.ShowDialog();
                 this.Show();
@@ -69,55 +66,47 @@ namespace Sport
             }
             else
             {
-                MessageBox.Show("Нету пользователя с такими учетными данными");
+                MessageBox.Show("Неверный логин или пароль");
+                await Blocking(); 
+                
             }
         }
 
         public User AuthenticateUser(string login, string pass)
         {
-            
             SqlDataAdapter adapter = new SqlDataAdapter();
             DataTable table = new DataTable();
 
             string queryString = $"SELECT Id_User, login, pass FROM [User] WHERE login = '{login}' AND pass = '{pass}'";
 
-            SqlCommand command = new SqlCommand(queryString, dataBase.GetConnection());
-
-            adapter.SelectCommand = command;
-            adapter.Fill(table);
+            using (SqlCommand command = new SqlCommand(queryString, dataBase.GetConnection()))
+            {
+                adapter.SelectCommand = command;
+                adapter.Fill(table);
+            }
 
             if (table.Rows.Count == 1)
             {
                 // Пользователь найден
-                User user = new User();
-                user.Id_User = Convert.ToInt32(table.Rows[0]["Id_User"]);
-                user.login = table.Rows[0]["login"].ToString();
-                return user;
+                User authenticatedUser = new User();
+                authenticatedUser.Id_User = Convert.ToInt32(table.Rows[0]["Id_User"]);
+                authenticatedUser.login = table.Rows[0]["login"].ToString();
+                return authenticatedUser;
             }
 
             return null; // Если пользователь не найден
         }
-
-
-     
 
         private void Exit_Click_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
         }
 
-     
-
         private void Reg_Click(object sender, RoutedEventArgs e)
         {
-
             Registration reg = new Registration();
             reg.Show();
-            // this.Close();
             this.Hide();
         }
     }
-        
-   
 }
-

@@ -29,31 +29,26 @@ namespace Sport
     public partial class MainWindow : Window
     {
         private readonly User user;
-        DataBase dataBase = new DataBase();
-
-
-        /*
-        public MainWindow(string username)
-        {
-            InitializeComponent();
-            this.username = username; // Сохраняем логин пользователя
-        }
-        */
-
-
-
 
         private DispatcherTimer exitTimer;
+        private Point lastMousePosition;
 
-        public MainWindow()
+        public MainWindow(User user)
         {
             InitializeComponent();
-
+            this.user = user;
+            
             // Инициализация и запуск таймера для автоматического закрытия окна через 10 секунд
             exitTimer = new DispatcherTimer();
             exitTimer.Interval = TimeSpan.FromSeconds(10);
             exitTimer.Tick += AutoCloseWindow;
             exitTimer.Start();
+
+            // Обработчики событий для движения мыши
+            MouseMove += MainWindow_MouseMove;
+
+            // Сохраняем начальное положение курсора
+            lastMousePosition = Mouse.GetPosition(this);
         }
 
         private void AutoCloseWindow(object sender, EventArgs e)
@@ -62,6 +57,18 @@ namespace Sport
 
             // Закрытие текущего окна
             this.Close();
+        }
+
+        private void MainWindow_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Каждый раз, когда происходит движение мыши, сбрасываем таймер
+            Point currentMousePosition = Mouse.GetPosition(this);
+            if (currentMousePosition != lastMousePosition)
+            {
+                lastMousePosition = currentMousePosition;
+                exitTimer.Stop();
+                exitTimer.Start();
+            }
         }
 
         private void Exit_Click(object sender, MouseButtonEventArgs e)
@@ -119,13 +126,7 @@ namespace Sport
         }
 
 
-        public MainWindow(User user)
-        {
-            InitializeComponent();
-            this.user = user;
-            //UsernameTextBlock.Text = "Логин: " + user.login;
-            //NameTextBlock.Text = "Имя: " + user.Name1;
-        }
+        
 
         
     }

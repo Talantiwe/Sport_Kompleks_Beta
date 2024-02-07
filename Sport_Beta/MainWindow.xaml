@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Sport"
         mc:Ignorable="d"
         Title="SportKompleks" Height="500" Width="700" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+    
     <Window.Background>
         <ImageBrush ImageSource="/Photo/Glavnoe okno.jpg"/>
     </Window.Background>
